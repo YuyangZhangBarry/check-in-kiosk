@@ -12,10 +12,10 @@ app.use("/api", router);
 
 mongoose
   .connect(process.env.MONGODB_URI)
+  .then(() => console.log("MongoDB successfully connected!"))
   .catch(() => {
     console.error("MongoDB connection failed!");
-  })
-  .then(() => console.log("MongoDB successfully connected!"));
+  });
 
 app.listen(process.env.PORT, () =>
   console.log(`Server running on http://localhost:${process.env.PORT}`)
