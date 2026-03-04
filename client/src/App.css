@@ -1,42 +1,221 @@
+/* ==========================================================================
+   1. CSS Variables (Brighter colors, softer curves, colored shadows)
+   ========================================================================== */
+:root {
+  --primary-color: #6366f1; /* Vibrant Indigo/Periwinkle for a lively feel */
+  --primary-hover: #4f46e5; /* Slightly deeper for hover */
+  --primary-light: #e0e7ff; /* Very soft blue/purple background accent */
+  --bg-color: #f8fafc; /* Slightly cooler, softer light background */
+  --surface-color: #ffffff; /* Pure white for cards */
+  --text-main: #0f172a; /* Dark slate for better contrast */
+  --text-muted: #64748b; /* Soft slate for secondary text */
+  --border-color: #cbd5e1; /* Slightly softer border color */
+  --border-radius: 14px; /* Increased radius for a friendlier, rounder look */
+  --transition-speed: 0.25s; /* Slightly smoother animation */
+}
+
+/* ==========================================================================
+       2. Global Reset & Core Centered Layout
+       ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 40px 20px;
+
+  /* Flexbox layout to center everything */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-main);
+  margin-bottom: 1.2rem;
+  font-weight: 700; /* Slightly bolder headings for a punchy look */
+  text-align: center;
+  letter-spacing: -0.02em; /* Tighter letter spacing looks more modern */
+}
+
+/* ==========================================================================
+       3. Form Container (Card with floating hover effect)
+       ========================================================================== */
+form {
+  background-color: var(--surface-color);
+  padding: 36px;
+  border-radius: var(--border-radius);
+  /* Softer, larger shadow */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 4px 6px -2px rgba(0, 0, 0, 0.025);
+
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto 32px;
+  text-align: left;
+
+  /* Add smooth transition for the hover effect */
+  transition: transform var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+/* Lively interaction: float up slightly on hover */
+form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05),
+    0 8px 10px -6px rgba(0, 0, 0, 0.01);
+}
+
+/* ==========================================================================
+       4. Inputs & Textarea (Chunky, friendly inputs)
+       ========================================================================== */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600; /* Slightly bolder labels */
+  font-size: 0.95rem;
+  color: var(--text-main);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid transparent; /* Transparent border by default, relying on background */
+  border-radius: 10px; /* Slightly rounder inside the form */
+  font-size: 1rem;
+  color: var(--text-main);
+  background-color: #f1f5f9; /* Subtle gray background for resting state */
+  transition: all var(--transition-speed);
+  margin-bottom: 24px;
+}
+
+/* Active state: White background, primary border, and soft glow */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  background-color: var(--surface-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+/* ==========================================================================
+       5. Buttons (Bouncy with colored shadows)
+       ========================================================================== */
+button {
+  display: inline-block;
+  padding: 14px 28px; /* Slightly chunkier button */
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+
+  /* Colored shadow to make it pop! */
+  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.3),
+    0 2px 4px -1px rgba(99, 102, 241, 0.2);
+  transition: all var(--transition-speed);
+}
+
+/* Float up and increase shadow on hover */
+button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px -1px rgba(99, 102, 241, 0.4),
+    0 4px 6px -1px rgba(99, 102, 241, 0.2);
+}
+
+/* Bouncy click effect */
+button:active {
+  transform: scale(0.96) translateY(0);
+  box-shadow: 0 2px 4px -1px rgba(99, 102, 241, 0.3);
+}
+
+button:disabled {
+  background-color: var(--border-color);
+  color: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+       6. Tables (Playful header styling)
+       ========================================================================== */
+.table-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 32px;
+  overflow-x: auto;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  background-color: var(--surface-color);
+  transition: transform var(--transition-speed);
+}
+
+.table-container:hover {
+  transform: translateY(-2px);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+th,
+td {
+  padding: 16px; /* Slightly more spacious cells */
+  border-bottom: 1px solid var(--border-color);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* More playful table header */
+th {
+  background-color: var(
+    --primary-light
+  ); /* Use a soft tint of the primary color */
+  font-weight: 700;
+  color: var(--primary-hover); /* Matched colored text */
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+tr:last-child td {
+  border-bottom: none;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+tr:hover td {
+  background-color: #f8fafc;
 }
